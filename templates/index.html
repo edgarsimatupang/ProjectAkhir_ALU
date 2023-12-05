@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamus Digital</title>
+    <style>
+      
+        body {
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kamus Digital</h1>
+
+    <form action="/add" method="post">
+        <label for="word">Kata:</label>
+        <input type="text" id="word" name="word" required>
+        <label for="definition">Definisi:</label>
+        <input type="text" id="definition" name="definition" required>
+        <button type="submit">Tambah Kata</button>
+    </form>
+
+    <form method="post" action="{{ url_for('index') }}" class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Cari" aria-label="Cari" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
+    </form>
+
+    <h2>Daftar Kata dan Definisi:</h2>
+    {% if words %}
+        <ul>
+            {% for word in words %}
+                <li><strong>{{ word.word }}:</strong> {{ word.definition }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Tidak ada hasil pencarian.</p>
+    {% endif %}
+</body>
+</html>
+
+
